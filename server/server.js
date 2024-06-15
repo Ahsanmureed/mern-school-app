@@ -22,7 +22,7 @@ import cookieParser from "cookie-parser";
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173",'https://mern-school-app.vercel.app'],
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true,
   })
