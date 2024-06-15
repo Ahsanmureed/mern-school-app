@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import img from '../assets/signin.gif'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 const Register = () => {
   const [loading,setLoading]=useState(false)
   const navigate= useNavigate()
@@ -50,10 +51,12 @@ const handleSubmit= async(e)=>{
       photo:data.photo,
       password:data.password
     })
+    toast.success(res.data.message)
     setLoading(false)
     navigate('/login')
   } catch (error) {
     setLoading(false)
+    toast.error(error.response.data.message)
   }
 }
 
@@ -67,7 +70,7 @@ const handleSubmit= async(e)=>{
                             <div className=' text-[15px]   pb-1 pt-2 cursor-pointer text-center  w-full'>
                               Upload  Photo
                             </div>
-                            <input required type='file' className='hidden' onChange={handleUploadPic}/>
+                            <input  type='file' className='hidden' onChange={handleUploadPic}/>
                           </label></div>
        <label htmlFor="username">Username:</label>
        <input required onChange={handleChange}  name='username' className=' text-black outline-none rounded-sm py-0.5 mb-2' type="text" />
