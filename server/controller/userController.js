@@ -162,7 +162,7 @@ const updateUserController = async(req,res)=>{
  const token= jwt.sign({_id:user._id,username:user.username,email:user.email,role:user.role,photo:user.photo}, process.env.JWT_KEY,{expiresIn:'1hr'})
  
  const {password:pass,...info}=user._doc
- console.log(info);
+
  res.cookie("token",token,{
   sameSite: 'none',
   httpOnly:true,
