@@ -80,9 +80,9 @@ try {
   </div>
 
     <label className=' font-medium' htmlFor="username">UserName:</label>
-    <input className=' border-2 rounded-md outline-none mt-0.5 mb-2' value={username} onChange={(e)=> setUsername(e.target.value)}  type="text" />
+    <input required className=' border-2 rounded-md outline-none mt-0.5 mb-2' value={username} onChange={(e)=> setUsername(e.target.value)}  type="text" />
     <label htmlFor="email">Email:</label>
-    <input className=' border-2 rounded-md outline-none mt-0.5 mb-2' type="text" onChange={(e)=> setEmail(e.target.value)} value={email} />
+    <input required className=' border-2 rounded-md outline-none mt-0.5 mb-2' type="text" onChange={(e)=> setEmail(e.target.value)} value={email} />
    
     <button disabled={loading}  className=' bg-green-400 w-24 mx-auto py-1 px-2 rounded-md mt-3 mb-0.5' type='submit'>Update</button>
   </form>
