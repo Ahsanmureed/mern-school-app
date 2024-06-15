@@ -5,16 +5,16 @@ import AdminRoleLeaves from './AdminRoleLeaves'
 import axios from 'axios';
 const AdminLeaveStatusChange = ({onclose,leave,fetch}) => {
   const [loading,setLoading]=useState(false)
-  const [leaveStatus,setLeaveStatus] = useState(leave.status)
+  const [leaveStatus,setLeaveStatus] = useState({status:leave.status})
   const handleOnChangeSelect = (e) => {
-    setLeaveStatus(e.target.value)
+    setLeaveStatus({...leaveStatus,status:e.target.value})
 
     
 }
 const updateAttendance =async ()=>{
  try {
   setLoading(true)
-  const { data } = await axios.put(`${import.meta.env.VITE_URL}/api/v1/leave/${leave._id}`,{status:leaveStatus})
+  const { data } = await axios.put(`${import.meta.env.VITE_URL}/api/v1/leave/${leave._id}`,{status:leaveStatus?.status})
   setLoading(false)
   onclose();
   fetch()
@@ -38,7 +38,7 @@ const updateAttendance =async ()=>{
 
 <div className='flex items-center  justify-center  my-4'>
    <p className=' mr-1.5'><strong>Status:</strong></p>  
-   <select className='border px-4 py-1' value={leave?.status} onChange={handleOnChangeSelect}>
+   <select className='border px-4 py-1' value={leaveStatus?.status} onChange={handleOnChangeSelect}>
        {
            Object.values(AdminRoleLeaves).map(el => {
                return(

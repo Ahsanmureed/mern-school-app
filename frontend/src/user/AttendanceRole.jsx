@@ -4,15 +4,18 @@ import ROLE from './ROLE'
 import axios from 'axios';
 const AttendanceRole = ({onClose,record,fetch,percentage}) => {
   
-  
-  const [studentAttendance,setStudentAttendance] = useState(record.status)
+  const [attendance,setAttendance]= useState({
+    status:record?.status
+  })
+  const [studentAttendance,setStudentAttendance] = useState(attendance?.status)
     const handleOnChangeSelect = (e) => {
-      setStudentAttendance(e.target.value)
+      setAttendance({...attendance,status:e.target.value})
 
       
   }
+  
   const updateAttendance =async ()=>{
-    const { data } = await axios.put(`${import.meta.env.VITE_URL}/api/v1/attendance/${record._id}`,{status:studentAttendance})
+    const { data } = await axios.put(`${import.meta.env.VITE_URL}/api/v1/attendance/${record._id}`,{status:attendance?.status})
     onClose();
     fetch()
     percentage()
@@ -33,7 +36,7 @@ const AttendanceRole = ({onClose,record,fetch,percentage}) => {
 
          <div className='flex items-center justify-between my-4'>
              <p>Status :</p>  
-             <select className='border px-4 py-1' value={record?.status} onChange={handleOnChangeSelect}>
+             <select className='border px-4 py-1' value={attendance?.status} onChange={handleOnChangeSelect}>
                  {
                      Object.values(ROLE).map(el => {
                          return(
