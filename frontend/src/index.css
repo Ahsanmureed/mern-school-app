@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+   padding-top: 70px;
+}
+
+.scrollbar-none::-webkit-scrollbar{
+  display: none;
+}
